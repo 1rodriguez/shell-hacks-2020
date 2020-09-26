@@ -16,7 +16,7 @@ class Job:
         self.sanitized_description = re.sub("\<([a-z*])\s([a-z*]*=.*?)", "",
                                             desc_removed_tags)
 
-    def write_job(self):
+    def write_to_firestore(self):
         doc_ref = firebase_interface.db.collection(u'postings') \
                                         .document(self.gh_id)
 
