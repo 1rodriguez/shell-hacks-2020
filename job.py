@@ -12,13 +12,15 @@ class Job:
         self.title = title
         self.description = description
 
-        desc_removed_tags = re.sub("\<\/?[a-z]*\>", "", self.description)
+        desc_removed_tags = re.sub("(\<\/?[a-z]*\>)|(\<\/?[a-z*]|\d\>)", "",
+                                   self.description)
         self.sanitized_description = re.sub("\<([a-z*])\s([a-z*]*=.*?)", "",
                                             desc_removed_tags)
+        self.sanitized_description = re.sub('href=".*?">', "", self.sanitized_description)
 
     def write_to_firestore(self):
         doc_ref = firebase_interface.db.collection(u'postings') \
-                                        .document(self.gh_id)
+                                        .document(self.id_code)
 
         doc_ref.set({
             u'type': self.job_type,

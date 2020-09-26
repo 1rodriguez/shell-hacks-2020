@@ -5,7 +5,6 @@ import os
 
 keypath = "./ml-job-finder-2fa3b623837c.json"
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = keypath
-url = 'https://jobs.github.com/positions.json'
 project_id = 'ml-job-finder'
 
 # Use app-default credentials
